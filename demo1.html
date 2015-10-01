@@ -16,6 +16,13 @@
                 height: 100%;
                 filter: blur(3px);
             }
+
+            .buttons {
+              z-index: 1;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
         </style>
         <script src="rainyday.js"></script>
         <script>
@@ -27,14 +34,11 @@
                     });
                     engine.rain([ [1, 2, 8000] ]);
                     engine.rain([ [3, 3, 0.88], [5, 5, 0.9], [6, 2, 1] ], 100);
-                    setTimeout(function(){
-                      engine.pause();
-                    }, 3000);
 
-                    setTimeout(function(){
-                      engine.continue();
-                    }, 6000);
+                    document.getElementById('pause').addEventListener('click',function(){ engine.pause(); })
+                    document.getElementById('continue').addEventListener('click', function(){ engine.continue(); })
                 };
+
                 image.crossOrigin = 'anonymous';
                 image.src = 'http://i.imgur.com/N7ETzFO.jpg';
             }
@@ -42,5 +46,9 @@
     </head>
     <body onload="run();">
         <img id="background" alt="background" src="" />
+        <div class="buttons">
+          <button type="button" id="pause" name="button">Pause</button>
+          <button type="button" id="continue" name="button">Continue</button>
+        </div>
     </body>
 </html>

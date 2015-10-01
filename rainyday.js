@@ -151,7 +151,9 @@
 	};
 
 	RainyDay.prototype.continue = function() {
-		this.animateDrops();
+    if (!this.animationRequest) {
+		  this.animateDrops();
+    }
 	};
 
 	/**
