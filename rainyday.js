@@ -89,8 +89,8 @@
 	};
 
 	RainyDay.prototype.setResizeHandler = function() {
-		window.addEventListener("resize", this.checkSize.bind(this) );
-		window.addEventListener("orientationchange", this.checkSize.bind(this) );
+		window.addEventListener('resize', this.checkSize.bind(this) );
+		window.addEventListener('orientationchange', this.checkSize.bind(this) );
 	};
 
 	/**
@@ -148,11 +148,11 @@
 			window.cancelAnimationFrame(this.animationRequest);
 			this.animationRequest = undefined;
 		}
-	}
+	};
 
 	RainyDay.prototype.continue = function() {
 		this.animateDrops();
-	}
+	};
 
 	/**
 	 * Polyfill for requestAnimationFrame
