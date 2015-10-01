@@ -89,13 +89,8 @@
 	};
 
 	RainyDay.prototype.setResizeHandler = function() {
-		// use setInterval if oneresize event already use by other.
-		if (window.onresize !== null) {
-			window.setInterval(this.checkSize.bind(this), 100);
-		} else {
-			window.onresize = this.checkSize.bind(this);
-			window.onorientationchange = this.checkSize.bind(this);
-		}
+		window.addEventListener("resize", this.checkSize.bind(this) );
+		window.addEventListener("orientationchange", this.checkSize.bind(this) );
 	};
 
 	/**
