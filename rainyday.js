@@ -126,9 +126,11 @@
 	RainyDay.prototype.animateDrops = function() {
 		if (this.addDropCallback) {
 			this.addDropCallback();
-		} else {
-			return;
 		}
+
+    if (this.terminate) {
+      return;
+    }
 
 		// |this.drops| array may be changed as we iterate over drops
 		var dropsClone = this.drops.slice();
@@ -147,11 +149,13 @@
 		if (this.animationRequest) {
 			window.cancelAnimationFrame(this.animationRequest);
 			this.animationRequest = undefined;
+      this.terminate = true;
 		}
 	};
 
 	RainyDay.prototype.continue = function() {
     if (!this.animationRequest) {
+      this.terminate = false;
 		  this.animateDrops();
     }
 	};
