@@ -38,7 +38,7 @@ module.exports = function (grunt) {
                 'strict': false,
                 'sub': true,
                 'trailing': true,
-                'undef': true,
+                'undef': false,
                 'unused': true,
                 ignores: ['bower_components', 'node_modules']
             }
