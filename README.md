@@ -2,10 +2,16 @@
 [![Build Status](https://travis-ci.org/danii1/rainyday.js.png)](https://travis-ci.org/danii1/rainyday.js)
 
 # rainyday.js
-This is slightly updated fork of rainyday.js. Less globals pollution + added methods to pause and continue rain.
+Updated fork of rainyday.js as original version doesn't seem to be supported anymore.
 
-Original author readme:
-----
+## Changes
+- Use Universal Module Definition instead of polluting globals (works with AMD, Node, and browser globals)
+- Removed canvas blur effect (use css transform if you need to blur image)
+- Added methods to pause and continue animation
+- Added destroy method to cleanly remove canvases, initiated properties and event listeners.
+
+
+### Original author readme:
 
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XWP2SR3FLGE6C)

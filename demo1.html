@@ -37,6 +37,7 @@
 
                     document.getElementById('pause').addEventListener('click',function(){ engine.pause(); })
                     document.getElementById('continue').addEventListener('click', function(){ engine.continue(); })
+                    document.getElementById('destroy').addEventListener('click', function(){ engine.destroy(); })
                 };
 
                 image.crossOrigin = 'anonymous';
@@ -49,6 +50,7 @@
         <div class="buttons">
           <button type="button" id="pause" name="button">Pause</button>
           <button type="button" id="continue" name="button">Continue</button>
+          <button type="button" id="destroy" name="button">Destroy</button>
         </div>
     </body>
 </html>

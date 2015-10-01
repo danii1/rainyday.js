@@ -89,8 +89,9 @@
 	};
 
 	RainyDay.prototype.setResizeHandler = function() {
-		window.addEventListener('resize', this.checkSize.bind(this) );
-		window.addEventListener('orientationchange', this.checkSize.bind(this) );
+    this._resizeHandler = this.checkSize.bind(this);
+		window.addEventListener('resize', this._resizeHandler );
+		window.addEventListener('orientationchange', this._resizeHandler );
 	};
 
 	/**
@@ -159,6 +160,24 @@
 		  this.animateDrops();
     }
 	};
+
+  RainyDay.prototype.destroy = function() {
+    this.pause();
+
+    // detach canvas that was attached to the DOM
+    this.options.parentElement.removeChild(this.canvas);
+
+    // detach event listeners
+    window.removeEventListener('resize', this._resizeHandler );
+		window.removeEventListener('orientationchange', this._resizeHandler );
+
+    // clear all properties
+    for (var prop in this) {
+      if (this.hasOwnProperty(prop)) {
+        delete this[prop];
+      }
+    }
+  };
 
 	/**
 	 * Polyfill for requestAnimationFrame
@@ -251,7 +270,7 @@
 			lastExecutionTime = timestamp;
 			var context = this.canvas.getContext('2d');
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-			context.drawImage(this.background, 0, 0, this.canvas.width, this.canvas.height);
+			//context.drawImage(this.background, 0, 0, this.canvas.width, this.canvas.height);
 			// select matching preset
 			var preset;
 			for (var i = 0; i < presets.length; i++) {
@@ -612,16 +631,9 @@
 	 * Resizes canvas
 	 */
 	RainyDay.prototype.prepareBackground = function() {
-		this.background = this.background || document.createElement('canvas');
-		this.background.width = this.canvas.width;
-		this.background.height = this.canvas.height;
-
 		this.clearbackground = this.clearbackground || document.createElement('canvas');
 		this.clearbackground.width = this.canvas.width;
 		this.clearbackground.height = this.canvas.height;
-
-		var context = this.background.getContext('2d');
-		context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 		context = this.clearbackground.getContext('2d');
 		context.clearRect(0, 0, this.canvas.width, this.canvas.height);
