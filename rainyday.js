@@ -126,7 +126,10 @@
 	RainyDay.prototype.animateDrops = function() {
 		if (this.addDropCallback) {
 			this.addDropCallback();
+		} else {
+			return;
 		}
+
 		// |this.drops| array may be changed as we iterate over drops
 		var dropsClone = this.drops.slice();
 		var newDrops = [];
@@ -136,8 +139,20 @@
 			}
 		}
 		this.drops = newDrops;
-		window.requestAnimFrame(this.animateDrops.bind(this));
+
+		this.animationRequest = window.requestAnimFrame(this.animateDrops.bind(this));
 	};
+
+	RainyDay.prototype.pause = function() {
+		if (this.animationRequest) {
+			window.cancelAnimationFrame(this.animationRequest);
+			this.animationRequest = undefined;
+		}
+	}
+
+	RainyDay.prototype.continue = function() {
+		this.animateDrops();
+	}
 
 	/**
 	 * Polyfill for requestAnimationFrame

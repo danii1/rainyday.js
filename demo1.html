@@ -27,6 +27,13 @@
                     });
                     engine.rain([ [1, 2, 8000] ]);
                     engine.rain([ [3, 3, 0.88], [5, 5, 0.9], [6, 2, 1] ], 100);
+                    setTimeout(function(){
+                      engine.pause();
+                    }, 3000);
+
+                    setTimeout(function(){
+                      engine.continue();
+                    }, 6000);
                 };
                 image.crossOrigin = 'anonymous';
                 image.src = 'http://i.imgur.com/N7ETzFO.jpg';
